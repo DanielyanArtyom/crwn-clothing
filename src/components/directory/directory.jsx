@@ -1,6 +1,6 @@
 import React from 'react'
 import MenuItem from '../menu-item/menu-item'
-import './directory.scss'
+import { StyledDirectoryMenu } from './directory.styles'
 
 import { useSelector } from 'react-redux'
 import { selectDirectorySections } from '../../redux/directory/directorySelectors'
@@ -12,13 +12,13 @@ const Directory = () => {
     // const [sections, setSections] = React.useState()
 
     return (
-        <div className="directory-menu">
+        <StyledDirectoryMenu>
             {
                 sections.map(({ id, ...otherSectionProps }) => (
                     <MenuItem key={id} {...otherSectionProps} />
                 ))
             }
-        </div>
+        </StyledDirectoryMenu>
     )
 }
 

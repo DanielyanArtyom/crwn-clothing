@@ -1,5 +1,5 @@
 import React from 'react'
-import './checkoutItem.scss'
+import { CheckoutItemContainer, ImageContainer, TextContainer, QuantityContainer, RemoveButtonContainer } from './checkoutItem.styles'
 import { useDispatch } from 'react-redux'
 import { clearItemFromCart, addItem, removeItem } from '../../redux/cart/cartActions'
 
@@ -8,19 +8,19 @@ const CheckoutItem = ({ cartItem }) => {
     const dispatch = useDispatch()
 
     return (
-        <div className='checkout-item'>
-            <div className="image-container">
+        <CheckoutItemContainer>
+            <ImageContainer>
                 <img src={imageUrl} alt="item" />
-            </div>
-            <span className="name">{name}</span>
-            <div className="quantity">
-                <div className="arrow" onClick={() => dispatch(removeItem(cartItem))}>&#10094;</div>
-                <span className='value'>{quantity}</span>
-                <div className="arrow" onClick={() => dispatch(addItem(cartItem))}>&#10095;</div>
-            </div>
-            <span className="price">{price}</span>
-            <div className="remove-button" onClick={() => dispatch(clearItemFromCart(cartItem))}>&#10005;</div>
-        </div>
+            </ImageContainer>
+            <TextContainer>{name}</TextContainer>
+            <QuantityContainer>
+                <div onClick={() => dispatch(removeItem(cartItem))}>&#10094;</div>
+                <span >{quantity}</span>
+                <div onClick={() => dispatch(addItem(cartItem))}>&#10095;</div>
+            </QuantityContainer>
+            <TextContainer>{price}</TextContainer>
+            <RemoveButtonContainer onClick={() => dispatch(clearItemFromCart(cartItem))}>&#10005;</RemoveButtonContainer>
+        </CheckoutItemContainer>
     )
 }
 

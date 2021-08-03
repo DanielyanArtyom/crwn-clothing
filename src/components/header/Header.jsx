@@ -1,7 +1,7 @@
 import React from 'react'
-import './header.scss'
+import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink } from './header.styles'
+
 import { ReactComponent as Logo } from '../../assets/crown-logo.svg'
-import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import CartIcon from '../carIcon/cartIcon'
@@ -16,24 +16,24 @@ const Header = () => {
     const cartHidden = useSelector((state) => selectCartHidden(state))
 
     return (
-        <div className='header'>
-            <Link className='logo-container' to='/'>
+        <HeaderContainer>
+            <LogoContainer to='/'>
                 <Logo className='logo' />
-            </Link>
-            <div className="options">
-                <Link className='option' to='/shop'>Shop</Link>
-                <Link className='option' to='/shop'>Contact</Link>
+            </LogoContainer>
+            <OptionsContainer>
+                <OptionLink to='/shop'>Shop</OptionLink>
+                <OptionLink to='/shop'>Contact</OptionLink>
                 {
                     currentUser ?
-                        <div className='option' onClick={() => auth.signOut()}>SIGN OUT</div> :
-                        <Link className='option' to='/signIn'>SIGN IN</Link>
+                        <OptionLink as='div' onClick={() => auth.signOut()}>SIGN OUT</OptionLink> :
+                        <OptionLink to='/signIn'>SIGN IN</OptionLink>
                 }
                 <CartIcon />
-            </div>
+            </OptionsContainer>
             {
                 cartHidden && <CartDropdown />
             }
-        </div>
+        </HeaderContainer>
     )
 }
 
