@@ -7,26 +7,34 @@ import Header from './components/header/Header'
 import SignInSignUp from './pages/sign-in-and-up-page/SignInSignUp';
 import { Route, Switch, Redirect } from 'react-router-dom'
 
-import { auth, createUserProfileDocument } from './firebase/firebase'
+import { auth, createUserProfileDocument, } from './firebase/firebase'
 import { useDispatch, useSelector } from 'react-redux'
 import { setCurrentUser } from './redux/user/userActions'
 import { selectCurrentUser } from './redux/user/userSelectors'
+import { selectCollectionsForPreview } from './redux/shop/shopSelectors'
+import { createStructuredSelector } from 'reselect';
 
 function App() {
 
   const dispatch = useDispatch()
-  const currentUser = useSelector((state) => selectCurrentUser(state))
+  const { currentUser } = useSelector(createStructuredSelector({
+    currentUser: selectCurrentUser,
+  }))
 
   React.useEffect(() => {
     let unsubscribe = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth)
+
         userRef.onSnapshot(snapshot => {
+
           dispatch(setCurrentUser({
             id: snapshot.id,
             ...snapshot.data()
           }))
+
         })
+
       } else {
         dispatch(setCurrentUser(userAuth))
       }

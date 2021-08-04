@@ -9,7 +9,6 @@ import { Route } from 'react-router-dom'
 const ShopPage = ({ match }) => {
 
     const collections = useSelector(selectCollections)
-    console.log(match)
     return (
         <div className="shop-page">
             <Route exact path={`${match.path}`} component={CollectionsOveriew} />
