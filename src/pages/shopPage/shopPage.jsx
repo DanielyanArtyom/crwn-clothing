@@ -23,12 +23,11 @@ const ShopPage = ({ match }) => {
     React.useEffect(() => {
         const collectionRef = firestore.collection('collections')
         unsubscribeFromSnapshot = collectionRef.onSnapshot(async snapshot => {
-            const collectionsMap = convertCollectionsSnapshotsToMap(snapshot)
+            const collectionsMap = await convertCollectionsSnapshotsToMap(snapshot)
             dispatch(updateCollections(collectionsMap))
             setLoading(false)
-            console.log(loading)
         })
-        return unsubscribeFromSnapshot()
+        // return unsubscribeFromSnapshot()
     }, [])
 
     return (
