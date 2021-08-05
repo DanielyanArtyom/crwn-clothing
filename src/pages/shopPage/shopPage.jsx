@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { fetchCollectionStart } from '../../redux/shop/shopActions'
 import CollectionPageContainer from '../collection/collection.container'
 import CollectionsOveriewContainer from '../../components/collectionsOveriew/collectionOveriew.container'
@@ -13,7 +13,7 @@ const ShopPage = ({ match }) => {
 
     React.useEffect(() => {
         dispatch(fetchCollectionStart())
-    }, [])
+    }, [dispatch])
 
     return (
         <div className="shop-page">

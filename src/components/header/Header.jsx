@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux'
 
 import CartIcon from '../carIcon/cartIcon'
 import CartDropdown from '../cart/CartDropdown'
-import { auth } from '../../firebase/firebase'
 import { selectCartHidden } from '../../redux/cart/cartSelectors'
 import { selectCurrentUser } from '../../redux/user/userSelectors'
 import { signOutStart } from '../../redux/user/userActions'
@@ -14,8 +13,8 @@ import { useDispatch } from 'react-redux'
 
 const Header = () => {
     const dispatch = useDispatch()
-    const currentUser = useSelector((state) => selectCurrentUser(state))
-    const cartHidden = useSelector((state) => selectCartHidden(state))
+    const currentUser = useSelector(selectCurrentUser)
+    const cartHidden = useSelector(selectCartHidden)
 
     return (
         <HeaderContainer>

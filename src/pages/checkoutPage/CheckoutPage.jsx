@@ -1,7 +1,7 @@
 import React from 'react'
 import { CheckoutPageContainer, CheckoutHeaderContainer, HeaderBlockContainer, TotalContainer, WarningContainer } from './checkoutPage.styles'
 
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { selectCartItems, selectCartTotal } from '../../redux/cart/cartSelectors'
 import CheckoutItem from '../../components/checkoutItem/CheckoutItem'
 import { createStructuredSelector } from 'reselect'

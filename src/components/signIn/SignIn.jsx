@@ -3,7 +3,6 @@ import { SignInContainer, SignInTitle, ButtonsBarContainer } from './signIn.styl
 
 import FormInput from '../form-input/FormInput'
 import CustomButton from '../customButton/CustomButton'
-import { auth, signInWithGoogle } from '../../firebase/firebase'
 
 import { googleSignInStart, emailSignInStart } from '../../redux/user/userActions'
 import { useDispatch } from 'react-redux'

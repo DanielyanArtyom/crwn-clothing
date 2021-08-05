@@ -1,5 +1,4 @@
 import React from 'react'
-import CustomButton from '../customButton/CustomButton'
 import CartItem from '../cartItem/CartItem'
 import { withRouter } from 'react-router-dom'
 

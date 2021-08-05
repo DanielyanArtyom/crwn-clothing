@@ -21,7 +21,7 @@ function App() {
 
   React.useEffect(() => {
     dispatch(checkUserSession())
-  }, [])
+  }, [dispatch])
 
   return (
     <div >
