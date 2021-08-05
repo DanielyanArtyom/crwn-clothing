@@ -1,39 +1,24 @@
 import React from 'react'
 
-import { useDispatch } from 'react-redux'
-import { updateCollections } from '../../redux/shop/shopActions'
-import WithSpinner from '../../components/withSpinner/withSpinner'
-
-import CollectionsOveriew from '../../components/collectionsOveriew/CollectionsOveriew'
-import CollectionPage from '../collection/CollectionPage'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchCollectionStartAsync } from '../../redux/shop/shopActions'
+import CollectionPageContainer from '../collection/collection.container'
+import CollectionsOveriewContainer from '../../components/collectionsOveriew/collectionOveriew.container'
 import { Route } from 'react-router-dom'
-import { firestore, convertCollectionsSnapshotsToMap } from '../../firebase/firebase'
 
-
-const CollectionsOveriewWithSpinner = WithSpinner(CollectionsOveriew)
-const CollectionspageWithSpinner = WithSpinner(CollectionPage)
 
 
 const ShopPage = ({ match }) => {
-    let unsubscribeFromSnapshot = null
     const dispatch = useDispatch()
 
-    const [loading, setLoading] = React.useState(true)
-
     React.useEffect(() => {
-        const collectionRef = firestore.collection('collections')
-        unsubscribeFromSnapshot = collectionRef.onSnapshot(async snapshot => {
-            const collectionsMap = await convertCollectionsSnapshotsToMap(snapshot)
-            dispatch(updateCollections(collectionsMap))
-            setLoading(false)
-        })
-        // return unsubscribeFromSnapshot()
+        dispatch(fetchCollectionStartAsync())
     }, [])
 
     return (
         <div className="shop-page">
-            <Route exact path={`${match.path}`} render={(props) => <CollectionsOveriewWithSpinner isLoading={loading} {...props} />} />
-            <Route path={`${match.path}/:categoryId`} render={(props) => <CollectionspageWithSpinner isLoading={loading} {...props} />} />
+            <Route exact path={`${match.path}`} component={CollectionsOveriewContainer} />
+            <Route path={`${match.path}/:categoryId`} component={CollectionPageContainer} />
         </div>
     )
 }

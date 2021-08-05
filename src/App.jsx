@@ -11,7 +11,6 @@ import { auth, createUserProfileDocument, } from './firebase/firebase'
 import { useDispatch, useSelector } from 'react-redux'
 import { setCurrentUser } from './redux/user/userActions'
 import { selectCurrentUser } from './redux/user/userSelectors'
-import { selectCollectionsForPreview } from './redux/shop/shopSelectors'
 import { createStructuredSelector } from 'reselect';
 
 function App() {
