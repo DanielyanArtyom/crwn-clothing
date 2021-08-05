@@ -3,10 +3,11 @@ import { SignUpContainer, SignUpTitle } from './signUp.styles'
 
 import CustomButton from '../customButton/CustomButton'
 import FormInput from '../form-input/FormInput'
-
-import { auth, createUserProfileDocument } from '../../firebase/firebase'
+import { signUpStart } from '../../redux/user/userActions'
+import { useDispatch } from 'react-redux'
 
 const SignUp = () => {
+    const dispatch = useDispatch()
     const [userCredentials, setUserCredentials] = React.useState({
         displayName: '',
         email: '',
@@ -24,24 +25,7 @@ const SignUp = () => {
             alert("password don't match")
             return;
         }
-
-        try {
-            const { user } = await auth.createUserWithEmailAndPassword(email, password)
-            await createUserProfileDocument(user, { displayName })
-
-            setUserCredentials({
-                displayName: '',
-                email: '',
-                password: '',
-                confirmPassword: '',
-            })
-
-        } catch (error) {
-            console.error({
-                message: 'IN SINUP COMPONENT',
-                error
-            })
-        }
+        dispatch(signUpStart({ displayName, email, password, }))
     }
 
     const handleChange = (event) => {

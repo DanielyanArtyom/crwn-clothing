@@ -5,8 +5,12 @@ import FormInput from '../form-input/FormInput'
 import CustomButton from '../customButton/CustomButton'
 import { auth, signInWithGoogle } from '../../firebase/firebase'
 
+import { googleSignInStart, emailSignInStart } from '../../redux/user/userActions'
+import { useDispatch } from 'react-redux'
+
 
 const SignIn = () => {
+    const dispatch = useDispatch()
     const [credentials, setCredentials] = React.useState({
         email: '',
         password: ''
@@ -14,23 +18,7 @@ const SignIn = () => {
 
     const handleSubmit = async event => {
         event.preventDefault()
-
-        const { email, password } = credentials
-
-        try {
-            await auth.signInWithEmailAndPassword(email, password)
-            setCredentials({
-                email: '',
-                password: ''
-            })
-        } catch (error) {
-            console.error({
-                message: 'IN SIGNIN COMPONENT',
-                error
-            })
-        }
-
-
+        dispatch(emailSignInStart(credentials))
     }
 
     const onHandleChange = event => {
@@ -66,7 +54,7 @@ const SignIn = () => {
                 />
                 <ButtonsBarContainer>
                     <CustomButton type='submit' >Submit Form</CustomButton>
-                    <CustomButton onClick={signInWithGoogle} isGoogleSignIn >Sign in with google</CustomButton>
+                    <CustomButton type='button' onClick={() => dispatch(googleSignInStart())} isGoogleSignIn >Sign in with google</CustomButton>
                 </ButtonsBarContainer>
 
             </form>
