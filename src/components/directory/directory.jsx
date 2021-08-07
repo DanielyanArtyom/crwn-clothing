@@ -9,8 +9,6 @@ import { selectDirectorySections } from '../../redux/directory/directorySelector
 const Directory = () => {
     const sections = useSelector(selectDirectorySections)
 
-    // const [sections, setSections] = React.useState()
-
     return (
         <StyledDirectoryMenu>
             {
