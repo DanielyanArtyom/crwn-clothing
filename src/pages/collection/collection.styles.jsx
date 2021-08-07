@@ -12,9 +12,15 @@ export const CollectionTitle = styled.h2`
 
 export const CollectionItemsContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 10px;
+  grid-template-columns: 1fr 1fr ;
+  grid-gap: 15px;
+  
   & > div {
     margin-bottom: 30px;
+  }
+
+  @media(min-width:800px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 10px;
   }
 `;

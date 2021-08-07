@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const CheckoutPageContainer = styled.div`
-  width: 55%;
+  width: 90%;
   min-height: 90vh;
   display: flex;
   flex-direction: column;
@@ -10,6 +10,10 @@ export const CheckoutPageContainer = styled.div`
   button {
     margin-left: auto;
     margin-top: 50px;
+  }
+
+  @media(min-width:800px) {
+    width: 55%;
   }
 `;
 
@@ -23,9 +27,17 @@ export const CheckoutHeaderContainer = styled.div`
 
 export const HeaderBlockContainer = styled.div`
   text-transform: capitalize;
-  width: 23%;
+  width: 22%;
   &:last-child {
-    width: 8%;
+    width: 12%;
+  }
+
+  @media(min-width:800px) {
+    width: 23%;
+
+    &:last-child {
+      width: 8%;
+    }
   }
 `;
 

@@ -6,8 +6,12 @@ export const CheckoutItemContainer = styled.div`
   min-height: 100px;
   border-bottom: 1px solid darkgrey;
   padding: 15px 0;
-  font-size: 20px;
+  font-size: 18px;
   align-items: center;
+
+  @media(min-width:800px) {
+    font-size:20px;
+  }
 `;
 
 export const ImageContainer = styled.div`
@@ -20,7 +24,11 @@ export const ImageContainer = styled.div`
 `;
 
 export const TextContainer = styled.span`
-  width: 23%;
+  width: 22%;
+
+  @media(min-width:800px) {
+    width: 23%;
+  }
 `;
 
 export const QuantityContainer = styled(TextContainer)`
